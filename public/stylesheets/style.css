@@ -1,8 +1,191 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0px !important;
+  margin: 0px !important;
 }
 
-a {
-  color: #00B7FF;
+#navbar {
+  height : 50px;  
+  width: 100%;  
+  background : #262626;  
+  color: white;
+  font-weight: bolder;
+  font-size: 25px;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+
+#current {
+  position: absolute;
+  top: 60px;
+  z-index: 10000;
+  background: white;
+  left: 20px;
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.marker {
+  border: 4px ridge #F56E6E;
+  background : #F56E6E;
+   /* #33ff81; */
+  opacity: 0.7;
+  width: 13px;
+  height: 13px;
+  border-radius: 100%;
+}
+
+.openhour_marker {
+  border: 4px ridge #0078ff;
+  background : #0078ff;
+  opacity: 1;
+  width: 13px;
+  height: 13px;
+  border-radius: 100%;
+}
+
+.closehour_marker {
+  border: 4px ridge #a0a0a0;
+  background : #a0a0a0;
+  opacity: 1;
+  width: 13px;
+  height: 13px;
+  border-radius: 100%;
+}
+
+.infowindow_wrap {
+  background: white;
+  padding: 20px;
+  box-sizing:border-box;
+  border: 1px solid rgba(0,0,0,0.2);  
+}
+
+.infowindow_title {
+  text-align: center;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.infowindow_content {
+  font-size: 12px;
+  font-weight: bold
+}
+
+.infowindow_openhour {
+  font-size: 12px; 
+  font-weight: normal;
+}
+
+.searchiw_wrap {
+  background: white;
+  padding: 15px;
+  box-sizing:border-box;
+  border: 1px solid rgba(0,0,0,0.2);  
+}
+
+.searchiw_title {
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.searchiw_address {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.searchiw_url {
+  font-size: 12px; 
+  font-weight: normal;
+}
+
+.pulse {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgb(255, 0, 0);
+  animation: pulse 1.7s infinite;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);         
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);    
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);         
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);    
+  }
+}
+
+#search {
+  position: absolute;
+  top: 60px;
+  left: 140px;
+  padding: 18px;
+  z-index: 10000;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  text-align: center;
+}
+
+#search_input {
+  border: none;
+}
+
+#search_input:focus{
+  outline: none;
+}
+
+#select {
+  position: absolute;
+  top: 60px;
+  left: 410px;
+  padding: 18px;
+  z-index: 10000;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  text-align: center;
+}
+
+#select_title {
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+
+
+.iw_wrap {
+  border:black;
 }
