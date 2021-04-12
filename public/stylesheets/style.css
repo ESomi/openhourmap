@@ -15,7 +15,6 @@ body {
   align-items: center;
   }
 
-
 #current {
   position: absolute;
   top: 60px;
@@ -171,7 +170,7 @@ body {
   position: absolute;
   top: 60px;
   left: 410px;
-  padding: 18px;
+  padding: 8px;
   z-index: 10000;
   background: white;
   border: 1px solid rgba(0,0,0,0.2);
@@ -179,12 +178,22 @@ body {
   text-align: center;
 }
 
-#select_title {
-  font-size: 15px;
-  font-weight: bolder;
+.isopening {
+  padding-top: 4px;
+  /* font-weight: bolder; */
+  display: inline-block;
 }
 
-
+.isopening_marker {
+  /* padding: 4px; */
+  border: 3px ridge #0078ff;
+  background : #0078ff;
+  opacity: 1;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  display: inline-block;
+}
 
 .iw_wrap {
   border:black;

@@ -27,7 +27,7 @@
     </div>
 
     <div id="select">
-        <select  style="font-size:18px;" onchange = "selectClosehour()" >
+        <select  style="font-size:16px;" onchange = "selectClosehour()" >
           <option value = "18:00" selected>18:00</option>
           <option value = "19:00" selected>19:00</option>
           <option value = "20:00" selected>20:00</option>
@@ -35,8 +35,15 @@
           <option value = "22:00" selected>22:00</option>
           <option value = "23:00" selected>23:00</option>
           <option value = "24:00" selected>24:00</option>
-        </select> 시에 열려있나요?
-    </div>
+        </select>
+        <div>
+          <div class="isopening" style="font-size:14px;"">
+            영업중 
+          </div>
+          <div class="isopening_marker">
+          </div>
+        </div>
+      </div>
 
   
     <div id="current">현재위치</div>      
