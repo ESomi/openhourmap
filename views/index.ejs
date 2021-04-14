@@ -15,8 +15,7 @@
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
         crossorigin="anonymous">
       </script>
-      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=60d2afa070deed01cafd5f58e692aabb&libraries=services"></script>
-
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1fd762278d424d787ce45267981a5904&libraries=services"></script>
   </head>
 
   <body>
@@ -48,9 +47,7 @@
   
     <div id="current">현재위치</div>      
     <div id="map" style="width:100%;height:100vh;"></div>
-    <!-- <div class = "iw_wrap">인포위도우</div> -->
-    <!-- <script type="text/javascript" src="/data/data.js"></script> -->
-    <script type="text/javascript" src="/data/ohdata.js"></script>
+    <script type="text/javascript" src="/data/data.js"></script>
 
     <script>
       var sungsu = new naver.maps.LatLng(37.546384, 127.044258) 
@@ -80,7 +77,7 @@
         });
 
         var content = `<div class='infowindow_wrap'>
-            <div class='infowindow_title'><a href=${target.url} style="color:#0068C3);  " target="_blank">${target.title}</a></div>
+            <div class='infowindow_title'><a href=${target.moreview} style="color:#0068C3);  " target="_blank">${target.title}</a></div>
             <div class='infowindow_openhour'>${target.openhour}</div>
           </div>`
 
@@ -95,7 +92,7 @@
         infowindowList.push(infowindow);
        }              
         
-        for (var i = 0, ii = markerList.length; i < ii; i++) {
+          for (var i = 0, ii = markerList.length; i < ii; i++) {
           naver.maps.Event.addListener(map, "click", ClickMap(i));
           naver.maps.Event.addListener(markerList[i], "click", getClickHandler(i));
         }
@@ -140,7 +137,7 @@
             });
             
           var content = `<div class='infowindow_wrap'>
-            <div class='infowindow_title'><a href=${target.url} style="color:#0068C3);  " target="_blank">${target.title}</a></div>
+            <div class='infowindow_title'><a href=${target.moreview} style="color:#0068C3);  " target="_blank">${target.title}</a></div>
             <div class='infowindow_openhour'>${target.openhour}</div>
           </div>`
 
@@ -165,7 +162,7 @@
               });
               
             var content = `<div class='infowindow_wrap'>
-              <div class='infowindow_title'><a href=${target.url} style="color:#0068C3;  " target="_blank">${target.title}</a></div>
+              <div class='infowindow_title'><a href=${target.moreview} style="color:#0068C3;  " target="_blank">${target.title}</a></div>
               <div class='infowindow_openhour'>${target.openhour}</div>
             </div>`
 
@@ -252,8 +249,9 @@
 
       function placeSearchCB(data,status,pagination) {
         if(status === kakao.maps.services.Status.OK) {
-          // let url = data[0]["place_url"] //+
-          // console.log(data[0]) //+
+          console.log(data)
+          pagination.nextPage()
+          console.log(data)
           let target = data[0]
           const lat = target.y;
           const lng = target.x;
@@ -271,35 +269,34 @@
         }
 
         var iwContent = `<div class='searchiw_wrap'>
-          <div class='searchiw_title'>${target.place_name}</div>
+          <div class='searchiw_title'><a href =${target.place_url} target="_blank">${target.place_name}</a></div>
           <div class='searchiw_address'>${target.road_address_name}</div>
-          <div class='searchiw_url'><a href =${target.place_url} target="_blank">상세보기</a></div>
-        </div>`       
-
+        </div>`
+      
         var iw = new naver.maps.InfoWindow({
                   content: iwContent,
                   maxWidth: 240,
                   backgroundColor: "white",
                   borderColor: "white",                 
-                  borderWidth: 5,
+                  borderWidth: 1,
                   anchorSize: new naver.maps.Size(15, 15),
                   anchorSkew: true,
                   anchorColor: "white",
                   pixelOffset: new naver.maps.Point(20, -20)
-              });        
+              }); 
+                   
         naver.maps.Event.addListener(marker, "click", function(e) {
             if (iw.getMap()) {
                 iw.close();
             } else {      
               iw.open(map, marker);              
-            }
-            
+            }            
         });
                  
-          map.setZoom(14, false);
-          map.panTo(latlng);
-        
-        }  else {
+        map.setZoom(16, false);
+        map.panTo(latlng);
+
+        } else {
           alert("검색결과가 없습니다.")
         }
       }

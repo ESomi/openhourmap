@@ -30,8 +30,8 @@ body {
 }
 
 .marker {
-  border: 4px ridge #F56E6E;
-  background : #F56E6E;
+  border: 4px ridge #dfdfdf;
+  background : #ffffff;
    /* #33ff81; */
   opacity: 0.7;
   width: 13px;
@@ -90,7 +90,7 @@ body {
 .searchiw_title {
   text-align: center;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .searchiw_address {
