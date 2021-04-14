@@ -50,12 +50,13 @@
     <script type="text/javascript" src="/data/data.js"></script>
 
     <script>
-      var sungsu = new naver.maps.LatLng(37.546384, 127.044258) 
+      var sungsu = new naver.maps.LatLng(37.546384, 127.044258)
+      var gangnam = new naver.maps.LatLng(37.502745, 127.027680) 
       var junggok = new naver.maps.LatLng(37.558260, 127.084437) 
       var bundang = new naver.maps.LatLng(37.3595704, 127.105399)
 
       var mapOptions = {
-        center: sungsu,
+        center: gangnam,
         zoom: 17
       };
       var map = new naver.maps.Map("map", mapOptions);
@@ -125,7 +126,7 @@
           var openhour = target.openhour
           var endhour = Number(target.openhour.slice(-5, openhour.length).slice(0,2))
           
-          if(endhour >= hkeyword){
+          if(endhour >= hkeyword || endhour <= 12){
             var latlng = new naver.maps.LatLng(target.lat, target.lng);          
             marker = new naver.maps.Marker({
               position: latlng,
@@ -246,12 +247,13 @@
         ps.keywordSearch(content,placeSearchCB);
       })
 
-
+      let dataList = [];
       function placeSearchCB(data,status,pagination) {
         if(status === kakao.maps.services.Status.OK) {
-          console.log(data)
+          dataList.push(...data)
+          console.log(dataList)
           pagination.nextPage()
-          console.log(data)
+
           let target = data[0]
           const lat = target.y;
           const lng = target.x;
@@ -260,41 +262,41 @@
             position: latlng,
             map: map
           })       
-        if (search_all_ehList.length == 0) {
-          search_all_ehList.push(marker) //생성된 마커를 배열에 추가
-        } else {
-          search_all_ehList.push(marker)
-          let pre_marker = search_all_ehList.splice(0,1);
-          pre_marker[0].setMap(null);
-        }
+          if (search_all_ehList.length == 0) {
+            search_all_ehList.push(marker) //생성된 마커를 배열에 추가
+          } else {
+            search_all_ehList.push(marker)
+            let pre_marker = search_all_ehList.splice(0,1);
+            pre_marker[0].setMap(null);
+          }
 
-        var iwContent = `<div class='searchiw_wrap'>
-          <div class='searchiw_title'><a href =${target.place_url} target="_blank">${target.place_name}</a></div>
-          <div class='searchiw_address'>${target.road_address_name}</div>
-        </div>`
-      
-        var iw = new naver.maps.InfoWindow({
-                  content: iwContent,
-                  maxWidth: 240,
-                  backgroundColor: "white",
-                  borderColor: "white",                 
-                  borderWidth: 1,
-                  anchorSize: new naver.maps.Size(15, 15),
-                  anchorSkew: true,
-                  anchorColor: "white",
-                  pixelOffset: new naver.maps.Point(20, -20)
-              }); 
-                   
-        naver.maps.Event.addListener(marker, "click", function(e) {
-            if (iw.getMap()) {
-                iw.close();
-            } else {      
-              iw.open(map, marker);              
-            }            
-        });
-                 
-        map.setZoom(16, false);
-        map.panTo(latlng);
+          var iwContent = `<div class='searchiw_wrap'>
+            <div class='searchiw_title'><a href =${target.place_url} target="_blank">${target.place_name}</a></div>
+            <div class='searchiw_address'>${target.road_address_name}</div>
+          </div>`
+        
+          var iw = new naver.maps.InfoWindow({
+                    content: iwContent,
+                    maxWidth: 240,
+                    backgroundColor: "white",
+                    borderColor: "white",                 
+                    borderWidth: 1,
+                    anchorSize: new naver.maps.Size(15, 15),
+                    anchorSkew: true,
+                    anchorColor: "white",
+                    pixelOffset: new naver.maps.Point(20, -20)
+                }); 
+                    
+          naver.maps.Event.addListener(marker, "click", function(e) {
+              if (iw.getMap()) {
+                  iw.close();
+              } else {      
+                iw.open(map, marker);              
+              }            
+          });
+                  
+          map.setZoom(16, false);
+          map.panTo(latlng);
 
         } else {
           alert("검색결과가 없습니다.")
