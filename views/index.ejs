@@ -47,7 +47,7 @@
   
     <div id="current">현재위치</div>      
     <div id="map" style="width:100%;height:100vh;"></div>
-    <script type="text/javascript" src="/data/data.js"></script>
+    <script type="text/javascript" src="/data/mondaydata.js"></script>
 
     <script>
       var sungsu = new naver.maps.LatLng(37.546384, 127.044258)
@@ -56,7 +56,7 @@
       var bundang = new naver.maps.LatLng(37.3595704, 127.105399)
 
       var mapOptions = {
-        center: gangnam,
+        center: sungsu,
         zoom: 17
       };
       var map = new naver.maps.Map("map", mapOptions);
