@@ -15,27 +15,13 @@ body {
   align-items: center;
   }
 
-#location1 {
+#current {
   position: absolute;
   top: 60px;
   z-index: 10000;
   background: white;
   left: 10px;
-  padding: 7px;
-  border: 1px solid rgba(0,0,0,0.2);
-  border-radius: 4px;
-  text-align: center;
-  cursor: pointer;
-  font-weight: bolder;
-}
-
-#location2 {
-  position: absolute;
-  top: 60px;
-  z-index: 10000;
-  background: white;
-  left: 60px;
-  padding: 7px;
+  padding: 16px;
   border: 1px solid rgba(0,0,0,0.2);
   border-radius: 4px;
   text-align: center;

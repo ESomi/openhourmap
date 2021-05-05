@@ -45,20 +45,19 @@
       </div>
 
   
-    <div id="location1">성수</div>
-    <div id="location2">강남</div>         
+    <div id="current">현재위치</div>      
     <div id="map" style="width:100%;height:100vh;"></div>
-    <script type="text/javascript" src="/data/data.js"></script>
+    <script type="text/javascript" src="/data/mondaydata.js"></script>
 
     <script>
-      var sungsu = new naver.maps.LatLng(37.547384, 127.041258)
-      var gangnam = new naver.maps.LatLng(37.502745, 127.027080) 
+      var sungsu = new naver.maps.LatLng(37.546384, 127.044258)
+      var gangnam = new naver.maps.LatLng(37.502745, 127.027680) 
       var junggok = new naver.maps.LatLng(37.558260, 127.084437) 
       var bundang = new naver.maps.LatLng(37.3595704, 127.105399)
 
       var mapOptions = {
         center: sungsu,
-        zoom: 16
+        zoom: 17
       };
       var map = new naver.maps.Map("map", mapOptions);
 
@@ -204,15 +203,34 @@
       
       });
 
-      $("#location1").click(() => {
-        map.setZoom(17, false);
-        map.panTo(sungsu);
-      })
+      let currentUse = true;
 
-      $("#location2").click(() => {
-        map.setZoom(17, false);
-        map.panTo(gangnam);
-      })
+
+      $("#current").click(() => {
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const latlng = new naver.maps.LatLng(lat, lng);
+            if(currentUse){
+              marker = new naver.maps.Marker({
+                map: map,
+                position: latlng,
+                icon : {
+                  content: '<img class="pulse" draggable="false" unselectable="on" src="https://myfirstmap.s3.ap-northeast-2.amazonaws.com/circle.png">',
+                  anchor: new naver.maps.Point(11,11),
+                },
+              });
+              currentUse = false;
+            }
+            map.setZoom(16, false);
+            map.panTo(latlng);
+          });
+        } else {
+          alert("위치정보 사용 불가능");
+        }
+      });
+
 
       let ps = new kakao.maps.services.Places();
       let search_all_ehList = []
@@ -253,7 +271,7 @@
           }
 
           var iwContent = `<div class='searchiw_wrap'>
-            <div class='searchiw_title'><a href =${target.place_url} style="color:#0068C3" target="_blank">${target.place_name}</a></div>
+            <div class='searchiw_title'><a href =${target.place_url} target="_blank">${target.place_name}</a></div>
             <div class='searchiw_address'>${target.road_address_name}</div>
           </div>`
         
