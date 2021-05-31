@@ -1,13 +1,14 @@
 body {
   padding: 0px !important;
   margin: 0px !important;
+  overflow-y: hidden;
 }
 
 #navbar {
   height : 50px;  
   width: 100%;  
-  background : #262626;  
-  color: white;
+  background : rgba(255, 255, 255, 0.3);
+  color: black;
   font-weight: bolder;
   font-size: 25px;  
   display: flex;
